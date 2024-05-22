@@ -1,10 +1,12 @@
 import React from 'react'
+import Layout from '../../Components/Layout'
 
 function MyOrders() {
   return (
-    <div className="bg-red-100">
-      MyOrders
-    </div>
+    <Layout>
+      <h1 className='text-4xl font-bold'>My Orders</h1>
+      <p className='mt-5'>Welcome to the My Orders page</p>
+    </Layout>
   )
 }
 

@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 
-const Layout = ({ children }) => {
+const Layout: React.FC<{children: React.ReactNode}> = ({
+    children,
+}) => {
     Layout.propTypes = {
         children: PropTypes.node.isRequired,
     }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRoutes, BrowserRouter } from 'react-router-dom';
 
 import Home from '../Home'
@@ -7,11 +6,11 @@ import MyOrder from '../MyOrder'
 import MyOrders from '../MyOrders'
 import NotFound from '../NotFound'
 import SignIn from '../SignIn'
-import './App.css'
 import Navbar from '../../Components/Navbar';
+import './App.css'
 
 const AppRoutes = () => {
-let routes = useRoutes([
+const routes = useRoutes([
     {
       path: '/',
       element: <Home />
@@ -43,8 +42,8 @@ let routes = useRoutes([
 const App = () => {
   return (
     <BrowserRouter>
-      <Navbar/>
       <AppRoutes />
+      <Navbar/>
     </BrowserRouter>
   )
 }

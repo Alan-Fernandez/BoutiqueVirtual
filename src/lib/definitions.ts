@@ -4,12 +4,17 @@ export interface Category {
     image: string;
 }
 
-export interface CardProps {
-    id: number
+export interface Product {
+    id: number;
     title: string;
     price: number;
     description: string;
     category: Category;
     images: string[];
+}
 
+export interface ShoppingCartContextType {
+    products: Product[];
+    addProduct: (product: Product) => void;
+    removeProduct: (productId: number) => void;
 }

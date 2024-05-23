@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react'
 import Layout from '../../Components/Layout'
 import Card from '../../Components/Card'
-import { CardProps } from '../../lib/definitions'
+import { Product } from '../../lib/definitions'
 
 function Home() {
-  const [items, setItems] = useState<CardProps[] | null>(null)
+  const [items, setItems] = useState<Product[] | null>(null)
 
     useEffect(() => {
       fetch('https://api.escuelajs.co/api/v1/products')
         .then(response => response.json())
         .then(data => setItems(data))
     }, []);
-
+    
+    console.log(items)
   return (
     <Layout>
       Home

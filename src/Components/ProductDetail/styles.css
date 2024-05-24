@@ -1,8 +1,5 @@
 .product-detail {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     width: 360px;
-    margin: 20px;
+    height: calc(100vh - 68px);
+    top: 68px;
 }

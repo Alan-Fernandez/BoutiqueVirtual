@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Layout from '../../Components/Layout'
 import Card from '../../Components/Card'
 import { Product } from '../../lib/definitions'
+import ProductDetail from '../../Components/ProductDetail'
 
 function Home() {
   const [items, setItems] = useState<Product[] | null>(null)
@@ -12,7 +13,6 @@ function Home() {
         .then(data => setItems(data))
     }, []);
     
-    console.log(items)
   return (
     <Layout>
       Home
@@ -23,6 +23,7 @@ function Home() {
           ))
         }
       </div>
+      <ProductDetail/>
     </Layout>
   )
 }

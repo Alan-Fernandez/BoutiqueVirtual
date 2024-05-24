@@ -13,8 +13,17 @@ export interface Product {
     images: string[];
 }
 
-export interface ShoppingCartContextType {
+export type ShoppingCartContextType = {
     products: Product[];
+    setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+    shoppingCart: Product[];
     addProduct: (product: Product) => void;
-    removeProduct: (productId: number) => void;
+    isProductDetailOpen: boolean;
+    openProductDetail: () => void;
+    closeProductDetail: () => void;
+    productToShow: Product | null;
+    setProductToShow: (product: Product | null) => void;
+    isCheckoutSideMenuOpen: boolean;
+    openCheckoutSideMenu: () => void;
+    closeCheckoutSideMenu: () => void;
 }

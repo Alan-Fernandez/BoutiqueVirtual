@@ -5,8 +5,7 @@ import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 
 const Navbar = () => {
     const activeStyle = 'underline underline-offset-4'
-    const { products } = useContext(ShoppingCartContext)
-    console.log('products',products)
+    const { shoppingCart } = useContext(ShoppingCartContext)
 
     return (
         <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light'>
@@ -104,7 +103,7 @@ const Navbar = () => {
             </li>
             <li className='flex items-center'>
                 <ShoppingBagIcon className='h-6 w-6 text-black'></ShoppingBagIcon>
-                <div>{products.length}</div>
+                <div>{shoppingCart.length}</div>
             </li>
         </ul>
         </nav>

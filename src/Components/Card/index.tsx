@@ -5,7 +5,7 @@ import { ShoppingCartContext } from '../../Context'
 
 
 const Card = ({data}: {data: Product}) => {
-    const { addProduct, shoppingCart, openProductDetail, setProductToShow, openCheckoutSideMenu, closeProductDetail } = useContext(ShoppingCartContext)
+    const { addProduct, shoppingCart, removeProduct, openProductDetail, setProductToShow, openCheckoutSideMenu, closeProductDetail } = useContext(ShoppingCartContext)
     
     let imageUrl = '';
     try {
@@ -19,20 +19,28 @@ const Card = ({data}: {data: Product}) => {
         setProductToShow(productDetail)
     }
 
-    const handleOnClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, productData: Product) => {
+    const handleAddProduct = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, productData: Product) => {
         event.stopPropagation();
         addProduct(productData);
         openCheckoutSideMenu()
         closeProductDetail()
-        console.log('Adding product to cart:', productData);
     }
+    const handleRemoveProduct = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, productData: Product) => {
+        event.stopPropagation();
+        removeProduct(productData);
+        closeProductDetail()
+    }
+
+
 
     const renderIcon =(data: Product)=>{
         const isInCart = shoppingCart.filter(product => product.id === data.id).length > 0;
         if(isInCart){
             return(
                 <div
-                    className='absolute top-0 right-0 flex justify-center items-center bg-black w-6 h-6 rounded-full m-2 p-1'>
+                    className='absolute top-0 right-0 flex justify-center items-center bg-black w-6 h-6 rounded-full m-2 p-1'
+                    onClick={(event) => handleRemoveProduct(event, data)}
+                    >
                     <CheckIcon className='h-6 w-6 text-white'/>
                 </div>
             )
@@ -40,7 +48,7 @@ const Card = ({data}: {data: Product}) => {
             return(
                 <div
                     className='absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1'
-                    onClick={(event) => handleOnClick(event, data)}
+                    onClick={(event) => handleAddProduct(event, data)}
                 >
                     <PlusIcon className='h-6 w-6 text-black'/>
                 </div>

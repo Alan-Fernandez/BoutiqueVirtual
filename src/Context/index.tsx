@@ -1,11 +1,13 @@
 import { createContext, ReactNode, useState } from 'react'
-import { ShoppingCartContextType, Product } from '../lib/definitions';
+import { ShoppingCartContextType, Product, Order } from '../lib/definitions';
 
 const defaultShoppingCartContext: ShoppingCartContextType = {
     products: [],
-    setProducts: () => {}, 
+    order: [],
     shoppingCart: [],
+    setProducts: () => {}, 
     addProduct: () => {},
+    removeProduct: () => {},
     isProductDetailOpen: false,
     openProductDetail: () => {},
     closeProductDetail: () => {},
@@ -14,6 +16,7 @@ const defaultShoppingCartContext: ShoppingCartContextType = {
     isCheckoutSideMenuOpen: false,
     openCheckoutSideMenu: () => {},
     closeCheckoutSideMenu: () => {},
+    addOrder: () => {}, 
 }
 
 export const ShoppingCartContext = createContext<ShoppingCartContextType>(defaultShoppingCartContext)
@@ -26,11 +29,16 @@ interface ShoppingCartProviderProps {
 export const ShoppingCartProvider = ({children}: ShoppingCartProviderProps) => {
     const [products, setProducts] = useState<Product[]>([]);
 
-    const [shoppingCart, setshoppingCart] = useState<Product[]>([]);
-
+    
     // función para agregar un producto al carrito
+    const [shoppingCart, setshoppingCart] = useState<Product[]>([]);
     const addProduct = (product: Product) => {
         setshoppingCart(prevshoppingCart => [...prevshoppingCart, product]);
+    }
+
+    // función para eliminar un producto del carrito
+    const removeProduct = (product: Product) => {
+        setshoppingCart(prevshoppingCart => prevshoppingCart.filter(p => p.id !== product.id));
     }
     
     // Product Detail · Show product
@@ -46,6 +54,15 @@ export const ShoppingCartProvider = ({children}: ShoppingCartProviderProps) => {
     const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
     const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
 
+    //Shopping Cart Order
+    const [order, setOrder] = useState<Order[]>([])
+
+    // función para agregar una orden al carrito
+    const addOrder = (orderToAdd: Order) => {
+        setOrder(prevOrder => [...prevOrder, orderToAdd]);
+        setshoppingCart([]);
+    }
+
 
 
     return (
@@ -54,6 +71,7 @@ export const ShoppingCartProvider = ({children}: ShoppingCartProviderProps) => {
                 products, 
                 setProducts, 
                 addProduct, 
+                removeProduct,
                 isProductDetailOpen, 
                 openProductDetail, 
                 closeProductDetail, 
@@ -61,7 +79,9 @@ export const ShoppingCartProvider = ({children}: ShoppingCartProviderProps) => {
                 setProductToShow,
                 isCheckoutSideMenuOpen,
                 openCheckoutSideMenu,
-                closeCheckoutSideMenu
+                closeCheckoutSideMenu,
+                order,
+                addOrder
             }
         }>
             {children}

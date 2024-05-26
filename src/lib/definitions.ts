@@ -23,18 +23,22 @@ export interface Order {
 
 export type ShoppingCartContextType = {
     products: Product[];
+    filteredProducts: Product[];
     order: Order[];
     setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
     shoppingCart: Product[];
     addProduct: (product: Product) => void;
     removeProduct: (product: Product) => void;
     isProductDetailOpen: boolean;
-    openProductDetail: () => void;
+    openProductDetail: (product: Product) => void;
     closeProductDetail: () => void;
     productToShow: Product | null;
     setProductToShow: (product: Product | null) => void;
     isCheckoutSideMenuOpen: boolean;
     openCheckoutSideMenu: () => void;
     closeCheckoutSideMenu: () => void;
+    setSearchByTitle: (title: string) => void;
+    setSearchByCategory: (category: string) => void;
+    
     addOrder: (order: Order) => void;
 }

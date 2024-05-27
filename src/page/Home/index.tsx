@@ -20,7 +20,7 @@ function Home() {
   return (
     <Layout>
       <div className='flex items-center justify-center relative w-80 mb-4'>
-        <h1 className='font-medium text-xl'>Products</h1>
+        <h1 className='font-medium text-xl'>{category? category : `Product`}</h1>
       </div>
       <Search placeholder='Search product...' />
       <div className='grid gap-4 grid-cols-4 w-full max-w-screen-lg'>
